@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SearchResultRepository extends JpaRepository<PrimeNumbersSearchResult, Long> {
+
+   PrimeNumbersSearchResult findBySearchNumber(Long  searchNumber);
 }
+
