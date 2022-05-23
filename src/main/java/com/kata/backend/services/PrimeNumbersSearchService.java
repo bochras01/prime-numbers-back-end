@@ -7,8 +7,11 @@ import com.kata.backend.models.repositories.PrimeNumberRepository;
 import com.kata.backend.models.repositories.SearchResultRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static com.kata.backend.utils.NumberUtils.findFiveDownStreamPrimeNumbers;
 import static com.kata.backend.utils.NumberUtils.findFiveUpStreamPrimeNumbers;
@@ -44,5 +47,21 @@ public class PrimeNumbersSearchService {
                 .average().getAsDouble());
         primeNumbersSearchRepository.save(searchResult);
         return SearchResultDto.mapSearchEntityToSearchDto(searchResult);
+    }
+
+    public List<SearchResultDto> getLastTenSearchHistory() {
+        final List<PrimeNumbersSearchResult> allSearchHistory = this.primeNumbersSearchRepository.findAll();
+        if (allSearchHistory.isEmpty())
+            return null;
+
+        allSearchHistory.sort(Comparator.comparing(PrimeNumbersSearchResult::getSearchDate).reversed());
+        if (allSearchHistory.size() > 10) {
+            List<PrimeNumbersSearchResult> firstTenSearchsa = allSearchHistory.stream().limit(10
+            ).collect(Collectors.toList());
+            return firstTenSearchsa.stream().map(SearchResultDto::mapSearchEntityToSearchDto).collect(Collectors.toList());
+        }
+
+        return allSearchHistory.stream().map(SearchResultDto::mapSearchEntityToSearchDto).collect(Collectors.toList());
+
     }
 }

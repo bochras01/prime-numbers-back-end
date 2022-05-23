@@ -26,8 +26,10 @@ public class SearchResultDto implements Serializable {
             return null;
         SearchResultDto searchResultDto = new SearchResultDto();
         searchResultDto.setSearchNumber(searchResult.getSearchNumber());
-        searchResultDto.setUpStreamPrimeNumbers(searchResult.getPrimeNumbers().stream().filter(num -> num.getPrimeNumberValue() > searchResult.getSearchNumber()).map(num -> num.getPrimeNumberValue()).collect(Collectors.toSet()));
-        searchResultDto.setDownStreamPrimeNumbers(searchResult.getPrimeNumbers().stream().filter(num -> num.getPrimeNumberValue() < searchResult.getSearchNumber()).map(num -> num.getPrimeNumberValue()).collect(Collectors.toSet()));
+        if (searchResult.getPrimeNumbers()!= null && searchResult.getPrimeNumbers().isEmpty()){
+            searchResultDto.setUpStreamPrimeNumbers(searchResult.getPrimeNumbers().stream().filter(num -> num.getPrimeNumberValue() > searchResult.getSearchNumber()).map(num -> num.getPrimeNumberValue()).collect(Collectors.toSet()));
+            searchResultDto.setDownStreamPrimeNumbers(searchResult.getPrimeNumbers().stream().filter(num -> num.getPrimeNumberValue() < searchResult.getSearchNumber()).map(num -> num.getPrimeNumberValue()).collect(Collectors.toSet()));
+        }
         searchResultDto.setAverageValue(searchResult.getAverageValue());
         searchResultDto.setSumValue(searchResult.getSumValue());
         return searchResultDto;
