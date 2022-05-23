@@ -19,7 +19,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Table(name = "searchs")
 @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="searchId")
-public class SearchResult implements Serializable {
+public class PrimeNumbersSearchResult implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long searchId;

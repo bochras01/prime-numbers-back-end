@@ -28,6 +28,6 @@ public class PrimeNumber implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "searchId", nullable = false)
-    private SearchResult searchNumber;
+    private PrimeNumbersSearchResult searchNumber;
 }
 

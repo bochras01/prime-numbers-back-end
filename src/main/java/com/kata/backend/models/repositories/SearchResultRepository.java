@@ -1,8 +1,9 @@
 package com.kata.backend.models.repositories;
 
+import com.kata.backend.models.PrimeNumbersSearchResult;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import javax.naming.directory.SearchResult;
-
-public interface SearchResultRepository extends JpaRepository<SearchResult, Long> {
+@Repository
+public interface SearchResultRepository extends JpaRepository<PrimeNumbersSearchResult, Long> {
 }
