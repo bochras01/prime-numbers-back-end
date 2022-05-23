@@ -9,6 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Min;
+import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
@@ -23,5 +24,11 @@ public class PrimeNumberSearchController {
 
     public ResponseEntity<SearchResultDto> searchPrimeNumbers(@PathVariable("number") @Min(0) long number) {
         return new ResponseEntity<SearchResultDto>(this.primeNumbersSearchService.mappSearchResult(number), HttpStatus.OK);
+    }
+
+    @GetMapping("/search-history")
+
+    public ResponseEntity<List<SearchResultDto>> getLastTenSearch() {
+        return new ResponseEntity<List<SearchResultDto>>(this.primeNumbersSearchService.getLastTenSearchHistory(), HttpStatus.OK);
     }
 }
