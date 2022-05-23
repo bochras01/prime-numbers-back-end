@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 
 @SpringBootTest
-public class PrimeNumbersSearchServiceTest {
+class PrimeNumbersSearchServiceTest {
 
     @Autowired
     PrimeNumbersSearchService primeNumbersSearchService;
@@ -48,7 +48,7 @@ public class PrimeNumbersSearchServiceTest {
                 .thenReturn(null);
 
         //THEN
-        final SearchResultDto searchResultDto = primeNumbersSearchService.mappSearchResult(4l);
+        final SearchResultDto searchResultDto = primeNumbersSearchService.mappSearchResult(4L);
         assertNotNull(searchResultDto);
         assertEquals(4L, searchResultDto.getSearchNumber());
         assertEquals(expectedPrims, searchResultDto.getDownStreamPrimeNumbers());
