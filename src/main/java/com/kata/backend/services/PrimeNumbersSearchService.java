@@ -15,7 +15,6 @@ import static com.kata.backend.utils.NumberUtils.findFiveUpStreamPrimeNumbers;
 
 @Service
 public class PrimeNumbersSearchService {
-
     private SearchResultRepository primeNumbersSearchRepository;
     private PrimeNumberRepository primeNumberRepository;
 
